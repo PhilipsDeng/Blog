@@ -5,44 +5,87 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Philips Deng's Personal Website</title>
     <style>
+        /* 设置页面基础样式 */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
             background-color: #f0f0f0;
         }
+        /* 设置头部样式 */
         header {
             background-color: #333;
             color: white;
             padding: 10px 0;
             text-align: center;
         }
+        /* 设置容器样式 */
         .container {
             width: 80%;
             margin: auto;
             overflow: hidden;
         }
+        /* 设置简介部分样式 */
         .intro {
             text-align: center;
             margin: 20px 0;
         }
+        /* 设置折叠菜单部分样式 */
+        .accordion {
+            margin: 20px 0;
+        }
+        .accordion-item {
+            background-color: #fff;
+            margin: 5px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .accordion-item-header {
+            padding: 10px;
+            cursor: pointer;
+            background-color: #333;
+            color: white;
+            font-weight: bold;
+            text-align: center;
+        }
+        .accordion-item-content {
+            display: none;
+            padding: 10px;
+        }
+        /* 设置每个画廊项目的样式 */
         .gallery {
             display: flex;
             flex-wrap: wrap;
             gap: 10px;
             justify-content: center;
         }
-        .gallery img {
-            width: 200px;
-            height: 200px;
-            object-fit: contain;
+        .gallery-item {
+            width: calc(50% - 20px); /* 每个项目占据页面宽度的一半，减去间距 */
+            box-sizing: border-box;
+            padding: 10px;
+            cursor: pointer;
+            transition: transform 0.3s;
         }
+        /* 设置图片样式 */
+        .gallery img {
+            width: 100%; /* 图片宽度为容器的100% */
+            height: 200px; /* 固定高度为200px，形成正方形 */
+            object-fit: cover; /* 保持图片比例，裁剪图片使其填满容器 */
+            display: block;
+            transition: height 0.3s;
+        }
+        .gallery-item.active img {
+            height: auto; /* 点击后显示完整图片 */
+            transition: height 0.3s; /* 添加动画效果 */
+        }
+        /* 设置图片描述样式 */
         .description {
-            text-align: center;
             font-size: 14px;
             color: #555;
             margin-top: 5px;
+            text-align: center;
         }
+        /* 设置页脚样式 */
         footer {
             background-color: #333;
             color: white;
@@ -56,61 +99,71 @@
 </head>
 <body>
 
+<!-- 页面头部 -->
 <header>
     <h1>Philips Deng</h1>
 </header>
 
+<!-- 页面主体 -->
 <div class="container">
+    <!-- 简介部分 -->
     <section class="intro">
         <h2>About me</h2>
         <p>Servus! I'm Philips Deng, a postgraduate in Robotics&Intelligence.</p>
     </section>
 
-    <section class="gallery">
-        <h2>Photograph</h2>
-        <!-- 示例照片，替换为你的照片链接和描述 -->
-        <div>
-            <img src="images/photo1.jpg" alt="Photo 1">
-            <div class="description">描述1</div>
-        </div>
-        <div>
-            <img src="images/photo2.jpg" alt="Photo 2">
-            <div class="description">描述2</div>
-        </div>
-        <div>
-            <img src="images/photo3.jpg" alt="Photo 3">
-            <div class="description">描述3</div>
-        </div>
-        <div>
-            <img src="images/photo4.jpg" alt="Photo 4">
-            <div class="description">描述4</div>
-        </div>
-        <div>
-            <img src="images/photo5.jpg" alt="Photo 5">
-            <div class="description">描述5</div>
-        </div>
-        <div>
-            <img src="images/photo6.jpg" alt="Photo 6">
-            <div class="description">描述6</div>
-        </div>
-        <div>
-            <img src="images/photo7.jpg" alt="Photo 7">
-            <div class="description">描述7</div>
-        </div>
-        <div>
-            <img src="images/photo8.jpg" alt="Photo 8">
-            <div class="description">描述8</div>
-        </div>
-        <div>
-            <img src="images/photo9.jpg" alt="Photo 9">
-            <div class="description">描述9</div>
-        </div>
-        <div>
-            <img src="images/photo10.jpg" alt="Photo 10">
-            <div class="description">描述10</div>
+    <!-- 折叠菜单部分 -->
+    <section class="accordion">
+        <div class="accordion-item">
+            <div class="accordion-item-header">Photograph zeigen</div>
+            <div class="accordion-item-content">
+                <div class="gallery">
+                    <div class="gallery-item">
+                        <img src="images/photo1.jpg" alt="Photo 1">
+                        <div class="description">描述1</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/photo2.jpg" alt="Photo 2">
+                        <div class="description">描述2</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/photo3.jpg" alt="Photo 3">
+                        <div class="description">描述3</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/photo4.jpg" alt="Photo 4">
+                        <div class="description">描述4</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/photo5.jpg" alt="Photo 5">
+                        <div class="description">描述5</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/photo6.jpg" alt="Photo 6">
+                        <div class="description">描述6</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/photo7.jpg" alt="Photo 7">
+                        <div class="description">描述7</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/photo8.jpg" alt="Photo 8">
+                        <div class="description">描述8</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/photo9.jpg" alt="Photo 9">
+                        <div class="description">描述9</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/photo10.jpg" alt="Photo 10">
+                        <div class="description">描述10</div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
+    <!-- 联系方式部分 -->
     <section class="contact">
         <h2>Contact</h2>
         <p>Email: philips.deng@yahoo.com</p>
@@ -118,9 +171,34 @@
     </section>
 </div>
 
+<!-- 页面页脚 -->
 <footer>
     <p>&copy; 2024 Philips Deng. All rights reserved.</p>
 </footer>
+
+<!-- JavaScript -->
+<script>
+    // 获取折叠菜单项头部
+    const accordionHeader = document.querySelector('.accordion-item-header');
+    const galleryItems = document.querySelectorAll('.gallery-item');
+
+    // 为折叠菜单项头部添加点击事件监听器
+    accordionHeader.addEventListener('click', () => {
+        const content = accordionHeader.nextElementSibling;
+        const isActive = accordionHeader.classList.contains('active');
+
+        // 切换内容的显示状态
+        content.style.display = isActive ? 'none' : 'block';
+        accordionHeader.classList.toggle('active');
+    });
+
+    // 为每个画廊项添加点击事件监听器
+    galleryItems.forEach(item => {
+        item.addEventListener('click', () => {
+            item.classList.toggle('active');
+        });
+    });
+</script>
 
 </body>
 </html>
