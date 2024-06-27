@@ -10,13 +10,14 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f0f0f0;
+            background-color: #121212;
+            color: #e0e0e0;
         }
         /* 设置头部样式 */
         header {
-            background-color: #333;
-            color: white;
-            padding: 10px 0;
+            background-color: #1f1f1f;
+            color: #e0e0e0;
+            padding: 20px 0;
             text-align: center;
         }
         /* 设置容器样式 */
@@ -35,22 +36,39 @@
             margin: 20px 0;
         }
         .accordion-item {
-            background-color: #fff;
+            background-color: #2c2c2c;
             margin: 5px 0;
-            border: 1px solid #ddd;
+            border: 1px solid #3d3d3d;
             border-radius: 5px;
         }
         .accordion-item-header {
-            padding: 10px;
+            padding: 15px;
             cursor: pointer;
-            background-color: #333;
-            color: white;
+            background-color: #3d3d3d;
+            color: #e0e0e0;
             font-weight: bold;
             text-align: center;
+            transition: background-color 0.3s;
+            position: relative; /* 新增相对定位 */
+        }
+        .accordion-item-header:hover {
+            background-color: #505050;
+        }
+        /* 添加折叠状态的小三角 */
+        .accordion-item-header::before {
+            content: '▶'; /* 初始显示为右箭头 */
+            position: absolute;
+            left: 10px; /* 调整小三角的位置 */
+            transition: transform 0.3s; /* 添加旋转过渡效果 */
+        }
+        .accordion-item-header.active::before {
+            transform: rotate(90deg); /* 活动状态时旋转小三角 */
         }
         .accordion-item-content {
             display: none;
-            padding: 10px;
+            padding: 15px;
+            background-color: #2c2c2c;
+            border-top: 1px solid #3d3d3d;
         }
         /* 设置每个画廊项目的样式 */
         .gallery {
@@ -60,40 +78,59 @@
             justify-content: center;
         }
         .gallery-item {
-            width: calc(50% - 20px); /* 每个项目占据页面宽度的一半，减去间距 */
+            width: calc(25% - 20px); /* 网页版每行排列四个 */
             box-sizing: border-box;
             padding: 10px;
-            cursor: pointer;
-            transition: transform 0.3s;
+            background-color: #121212;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* 添加轻微的阴影效果 */
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.7);
+        }
+        @media (max-width: 768px) {
+            .gallery-item {
+                width: calc(50% - 20px); /* 平板设备每行排列两个 */
+            }
+        }
+        @media (max-width: 480px) {
+            .gallery-item {
+                width: calc(100% - 20px); /* 移动端每行排列一个 */
+            }
+        }
+        /* 设置图片容器样式 */
+        .gallery-item .image-container {
+            width: 100%;
+            padding-bottom: 100%; /* 使容器变为正方形 */
+            position: relative;
         }
         /* 设置图片样式 */
         .gallery img {
-            width: 100%; /* 图片宽度为容器的100% */
-            height: 200px; /* 固定高度为200px，形成正方形 */
-            object-fit: cover; /* 保持图片比例，裁剪图片使其填满容器 */
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* 保持图片比例，包含整个图片 */
             display: block;
-            transition: height 0.3s;
-        }
-        .gallery-item.active img {
-            height: auto; /* 点击后显示完整图片 */
-            transition: height 0.3s; /* 添加动画效果 */
+            box-sizing: border-box; /* 包含边框在内进行计算 */
         }
         /* 设置图片描述样式 */
         .description {
             font-size: 14px;
-            color: #555;
+            color: #b0b0b0;
             margin-top: 5px;
             text-align: center;
         }
         /* 设置页脚样式 */
         footer {
-            background-color: #333;
-            color: white;
+            background-color: #1f1f1f;
+            color: #e0e0e0;
             text-align: center;
-            padding: 10px 0;
-            position: fixed;
+            padding: 20px 0;
+            position: relative; /* 修改为relative，以防止固定位置遮挡内容 */
             width: 100%;
-            bottom: 0;
         }
     </style>
 </head>
@@ -109,7 +146,7 @@
     <!-- 简介部分 -->
     <section class="intro">
         <h2>About me</h2>
-        <p>Servus! I'm Philips Deng, a postgraduate in Robotics&Intelligence.</p>
+        <p>Servus! I'm Philips Deng, a postgraduate in Robotics & Intelligence.</p>
     </section>
 
     <!-- 折叠菜单部分 -->
@@ -119,44 +156,100 @@
             <div class="accordion-item-content">
                 <div class="gallery">
                     <div class="gallery-item">
-                        <img src="images/photo1.jpg" alt="Photo 1">
-                        <div class="description">描述1</div>
+                        <div class="image-container">
+                            <img src="images/photo1.jpg" alt="Photo 1">
+                        </div>
+                        <div class="description">The dark church</div>
                     </div>
                     <div class="gallery-item">
-                        <img src="images/photo2.jpg" alt="Photo 2">
-                        <div class="description">描述2</div>
+                        <div class="image-container">
+                            <img src="images/photo2.jpg" alt="Photo 2">
+                        </div>
+                        <div class="description">Zebra crossing</div>
                     </div>
                     <div class="gallery-item">
-                        <img src="images/photo3.jpg" alt="Photo 3">
-                        <div class="description">描述3</div>
+                        <div class="image-container">
+                            <img src="images/photo3.jpg" alt="Photo 3">
+                        </div>
+                        <div class="description">Surfing</div>
                     </div>
                     <div class="gallery-item">
-                        <img src="images/photo4.jpg" alt="Photo 4">
-                        <div class="description">描述4</div>
+                        <div class="image-container">
+                            <img src="images/photo4.jpg" alt="Photo 4">
+                        </div>
+                        <div class="description">Aurora</div>
                     </div>
                     <div class="gallery-item">
-                        <img src="images/photo5.jpg" alt="Photo 5">
-                        <div class="description">描述5</div>
+                        <div class="image-container">
+                            <img src="images/photo5.jpg" alt="Photo 5">
+                        </div>
+                        <div class="description">Half horse</div>
                     </div>
                     <div class="gallery-item">
-                        <img src="images/photo6.jpg" alt="Photo 6">
-                        <div class="description">描述6</div>
+                        <div class="image-container">
+                            <img src="images/photo6.jpg" alt="Photo 6">
+                        </div>
+                        <div class="description">Sunset in Englische Garten</div>
                     </div>
                     <div class="gallery-item">
-                        <img src="images/photo7.jpg" alt="Photo 7">
-                        <div class="description">描述7</div>
+                        <div class="image-container">
+                            <img src="images/photo7.jpg" alt="Photo 7">
+                        </div>
+                        <div class="description">FC Bayern</div>
                     </div>
                     <div class="gallery-item">
-                        <img src="images/photo8.jpg" alt="Photo 8">
-                        <div class="description">描述8</div>
+                        <div class="image-container">
+                            <img src="images/photo8.jpg" alt="Photo 8">
+                        </div>
+                        <div class="description">Horse & cop</div>
                     </div>
                     <div class="gallery-item">
-                        <img src="images/photo9.jpg" alt="Photo 9">
-                        <div class="description">描述9</div>
+                        <div class="image-container">
+                            <img src="images/photo9.jpg" alt="Photo 9">
+                        </div>
+                        <div class="description">Pink Cafe</div>
                     </div>
                     <div class="gallery-item">
-                        <img src="images/photo10.jpg" alt="Photo 10">
-                        <div class="description">描述10</div>
+                        <div class="image-container">
+                            <img src="images/photo10.jpg" alt="Photo 10">
+                        </div>
+                        <div class="description">Notre Dame</div>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="image-container">
+                            <img src="images/photo11.jpg" alt="Photo 11">
+                        </div>
+                        <div class="description">Tower</div>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="image-container">
+                            <img src="images/photo12.jpg" alt="Photo 12">
+                        </div>
+                        <div class="description">Tree seat</div>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="image-container">
+                            <img src="images/photo13.jpg" alt="Photo 13">
+                        </div>
+                        <div class="description">Gaze</div>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="image-container">
+                            <img src="images/photo14.jpg" alt="Photo 14">
+                        </div>
+                        <div class="description">Underground girl</div>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="image-container">
+                            <img src="images/photo15.jpg" alt="Photo 15">
+                        </div>
+                        <div class="description">Hague</div>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="image-container">
+                            <img src="images/photo16.jpg" alt="Photo 16">
+                        </div>
+                        <div class="description">Sparkle</div>
                     </div>
                 </div>
             </div>
@@ -167,7 +260,7 @@
     <section class="contact">
         <h2>Contact</h2>
         <p>Email: philips.deng@yahoo.com</p>
-        <p>ig: philips_deng</p>
+        <p>IG: <a href="https://www.instagram.com/philips_deng?igsh=Y2s1MGI5bmVwd2U0&utm_source=qr" target="_blank" style="color: rgba(255, 255, 255, 0.349);">philips_deng</a></p>
     </section>
 </div>
 
@@ -178,24 +271,18 @@
 
 <!-- JavaScript -->
 <script>
-    // 获取折叠菜单项头部
-    const accordionHeader = document.querySelector('.accordion-item-header');
-    const galleryItems = document.querySelectorAll('.gallery-item');
+    // 获取所有折叠菜单项头部
+    const accordionHeaders = document.querySelectorAll('.accordion-item-header');
 
-    // 为折叠菜单项头部添加点击事件监听器
-    accordionHeader.addEventListener('click', () => {
-        const content = accordionHeader.nextElementSibling;
-        const isActive = accordionHeader.classList.contains('active');
+    // 为每个折叠菜单项头部添加点击事件监听器
+    accordionHeaders.forEach(header => {
+        header.addEventListener('click', () => {
+            const content = header.nextElementSibling;
+            const isActive = header.classList.contains('active');
 
-        // 切换内容的显示状态
-        content.style.display = isActive ? 'none' : 'block';
-        accordionHeader.classList.toggle('active');
-    });
-
-    // 为每个画廊项添加点击事件监听器
-    galleryItems.forEach(item => {
-        item.addEventListener('click', () => {
-            item.classList.toggle('active');
+            // 切换内容的显示状态
+            content.style.display = isActive ? 'none' : 'block';
+            header.classList.toggle('active');
         });
     });
 </script>
