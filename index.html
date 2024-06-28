@@ -19,6 +19,24 @@
             color: #e0e0e0;
             padding: 20px 0;
             text-align: center;
+            position: relative;
+        }
+        /* 设置语言切换样式 */
+        .language-switch {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+        }
+        .language-switch button {
+            background: none;
+            border: none;
+            color: #e0e0e0;
+            cursor: pointer;
+            margin: 0 5px;
+            font-size: 16px;
+        }
+        .language-switch button:hover {
+            text-decoration: underline;
         }
         /* 设置容器样式 */
         .container {
@@ -41,7 +59,9 @@
             border: 1px solid #3d3d3d;
             border-radius: 5px;
         }
-        .accordion-item-header {
+        .accordion-item-header-container {
+            display: flex;
+            justify-content: center;
             padding: 15px;
             cursor: pointer;
             background-color: #3d3d3d;
@@ -49,19 +69,19 @@
             font-weight: bold;
             text-align: center;
             transition: background-color 0.3s;
-            position: relative; /* 新增相对定位 */
+            position: relative;
         }
-        .accordion-item-header:hover {
+        .accordion-item-header-container:hover {
             background-color: #505050;
         }
         /* 添加折叠状态的小三角 */
-        .accordion-item-header::before {
+        .accordion-item-header-container::before {
             content: '▶'; /* 初始显示为右箭头 */
             position: absolute;
             left: 10px; /* 调整小三角的位置 */
-            transition: transform 0.3s; /* 添加旋转过渡效果 */
+            transition: transform 0.4s; /* 添加旋转过渡效果 */
         }
-        .accordion-item-header.active::before {
+        .accordion-item-header-container.active::before {
             transform: rotate(90deg); /* 活动状态时旋转小三角 */
         }
         .accordion-item-content {
@@ -139,20 +159,33 @@
 <!-- 页面头部 -->
 <header>
     <h1>Philips Deng</h1>
+    <div class="language-switch">
+        <button onclick="switchLanguage('en')">EN</button>
+        <button onclick="switchLanguage('zh')">中文</button>
+        <button onclick="switchLanguage('de')">DE</button>
+    </div>
 </header>
 
 <!-- 页面主体 -->
 <div class="container">
     <!-- 简介部分 -->
     <section class="intro">
-        <h2>About me</h2>
-        <p>Servus! I'm Philips Deng, a postgraduate in Robotics & Intelligence.</p>
+        <h2 data-lang="en">About me</h2>
+        <h2 data-lang="zh" style="display:none;">关于我</h2>
+        <h2 data-lang="de" style="display:none;">Über mich</h2>
+        <p data-lang="en">Servus! I'm Philips Deng, a postgraduate in Robotics & Intelligence.</p>
+        <p data-lang="zh" style="display:none;">你好！我是Philips Deng，一名机器人与智能技术的研究生。</p>
+        <p data-lang="de" style="display:none;">Servus! Ich bin Philips Deng, ein Postgraduierter in Robotik und Intelligenz.</p>
     </section>
 
     <!-- 折叠菜单部分 -->
     <section class="accordion">
         <div class="accordion-item">
-            <div class="accordion-item-header">Photograph zeigen</div>
+            <div class="accordion-item-header-container" onclick="toggleAccordion(this)">
+                <div class="accordion-item-header" data-lang="en">Show Photographs</div>
+                <div class="accordion-item-header" data-lang="zh" style="display:none;">展示照片</div>
+                <div class="accordion-item-header" data-lang="de" style="display:none;">Fotos zeigen</div>
+            </div>
             <div class="accordion-item-content">
                 <div class="gallery">
                     <div class="gallery-item">
@@ -258,9 +291,13 @@
 
     <!-- 联系方式部分 -->
     <section class="contact">
-        <h2>Contact</h2>
+        <h2 data-lang="en">Contact</h2>
+        <h2 data-lang="zh" style="display:none;">联系</h2>
+        <h2 data-lang="de" style="display:none;">Kontakt</h2>
         <p>Email: philips.deng@yahoo.com</p>
-        <p>IG: <a href="https://www.instagram.com/philips_deng?igsh=Y2s1MGI5bmVwd2U0&utm_source=qr" target="_blank" style="color: rgba(255, 255, 255, 0.349);">philips_deng</a></p>
+        <p data-lang="en">IG: <a href="https://www.instagram.com/philips_deng?igsh=Y2s1MGI5bmVwd2U0&utm_source=qr" target="_blank" style="color: rgba(255, 255, 255, 0.349);">philips_deng</a></p>
+        <p data-lang="zh" style="display:none;">IG: <a href="https://www.instagram.com/philips_deng?igsh=Y2s1MGI5bmVwd2U0&utm_source=qr" target="_blank" style="color: rgba(255, 255, 255, 0.349);">philips_deng</a></p>
+        <p data-lang="de" style="display:none;">IG: <a href="https://www.instagram.com/philips_deng?igsh=Y2s1MGI5bmVwd2U0&utm_source=qr" target="_blank" style="color: rgba(255, 255, 255, 0.349);">philips_deng</a></p>
     </section>
 </div>
 
@@ -271,20 +308,25 @@
 
 <!-- JavaScript -->
 <script>
-    // 获取所有折叠菜单项头部
-    const accordionHeaders = document.querySelectorAll('.accordion-item-header');
+    // 折叠菜单切换函数
+    function toggleAccordion(container) {
+        const content = container.nextElementSibling;
+        const isActive = container.classList.contains('active');
 
-    // 为每个折叠菜单项头部添加点击事件监听器
-    accordionHeaders.forEach(header => {
-        header.addEventListener('click', () => {
-            const content = header.nextElementSibling;
-            const isActive = header.classList.contains('active');
+        // 切换内容的显示状态
+        content.style.display = isActive ? 'none' : 'block';
+        container.classList.toggle('active');
+    }
 
-            // 切换内容的显示状态
-            content.style.display = isActive ? 'none' : 'block';
-            header.classList.toggle('active');
+    // 语言切换功能
+    function switchLanguage(lang) {
+        document.querySelectorAll('[data-lang]').forEach(el => {
+            el.style.display = el.getAttribute('data-lang') === lang ? '' : 'none';
         });
-    });
+    }
+
+    // 默认语言切换调用
+    switchLanguage('de'); // 假设默认语言为德语
 </script>
 
 </body>
