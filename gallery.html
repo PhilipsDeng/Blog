@@ -11,13 +11,13 @@
     <header>
         <h1>Philips Deng</h1>
         <nav>
-            <a href="index.html" data-lang="en">Home</a>
+            <a href="index.html?lang=en" data-lang="en">Home</a>
             <a href="index.html?lang=zh" data-lang="zh" style="display:none;">主页</a>
             <a href="index.html?lang=de" data-lang="de" style="display:none;">Startseite</a>
-            <a href="gallery.html" data-lang="en">Gallery</a>
+            <a href="gallery.html?lang=en" data-lang="en">Gallery</a>
             <a href="gallery.html?lang=zh" data-lang="zh" style="display:none;">画廊</a>
             <a href="gallery.html?lang=de" data-lang="de" style="display:none;">Galerie</a>
-            <a href="projects.html" data-lang="en">Research Project</a>
+            <a href="projects.html?lang=en" data-lang="en">Research Project</a>
             <a href="projects.html?lang=zh" data-lang="zh" style="display:none;">研究项目</a>
             <a href="projects.html?lang=de" data-lang="de" style="display:none;">Forschungsprojekt</a>
         </nav>
@@ -37,23 +37,54 @@
             <h2 data-lang="zh" style="display:none;">展示照片</h2>
             <h2 data-lang="de" style="display:none;">Galerie anzeigen</h2>
             <div class="gallery">
-                <div class="gallery-item" onclick="showLightbox('images/photo1.jpg', 'The dark church')">
+                <div class="gallery-item" onclick="showLightbox('images/photo14.jpg', 'Underground girl')">
                     <div class="image-container">
-                        <img src="images/photo1.jpg" alt="The dark church" loading="lazy">
+                        <img src="images/photo14.jpg" alt="Underground girl" loading="lazy">
                     </div>
-                    <div class="description">The dark church</div>
+                    <div class="description">Underground girl</div>
                 </div>
-                <div class="gallery-item" onclick="showLightbox('images/photo2.jpg', 'Zebra crossing')">
+                <div class="gallery-item" onclick="showLightbox('images/photo13.jpg', 'Gaze')">
                     <div class="image-container">
-                        <img src="images/photo2.jpg" alt="Zebra crossing" loading="lazy">
+                        <img src="images/photo13.jpg" alt="Gaze" loading="lazy">
                     </div>
-                    <div class="description">Zebra crossing</div>
+                    <div class="description">Gaze</div>
                 </div>
+                <div class="gallery-item" onclick="showLightbox('images/photo16.jpg', 'Sparkle')">
+                    <div class="image-container">
+                        <img src="images/photo16.jpg" alt="Sparkle" loading="lazy">
+                    </div>
+                    <div class="description">Sparkle</div>
+                </div>
+                <div class="gallery-item" onclick="showLightbox('images/photo9.jpg', 'Pink Cafe')">
+                    <div class="image-container">
+                        <img src="images/photo9.jpg" alt="Pink Cafe" loading="lazy">
+                    </div>
+                    <div class="description">Pink Cafe</div>
+                </div>
+                
                 <div class="gallery-item" onclick="showLightbox('images/photo3.jpg', 'Surfing')">
                     <div class="image-container">
                         <img src="images/photo3.jpg" alt="Surfing" loading="lazy">
                     </div>
                     <div class="description">Surfing</div>
+                </div>
+                <div class="gallery-item" onclick="showLightbox('images/photo6.jpg', 'Statue')">
+                    <div class="image-container">
+                        <img src="images/photo6.jpg" alt="Statue" loading="lazy">
+                    </div>
+                    <div class="description">Statue</div>
+                </div>
+                <div class="gallery-item" onclick="showLightbox('images/photo7.jpg', 'Green')">
+                    <div class="image-container">
+                        <img src="images/photo7.jpg" alt="Green" loading="lazy">
+                    </div>
+                    <div class="description">Green</div>
+                </div>
+                <div class="gallery-item" onclick="showLightbox('images/photo5.jpg', 'Duck')">
+                    <div class="image-container">
+                        <img src="images/photo5.jpg" alt="Duck" loading="lazy">
+                    </div>
+                    <div class="description">Duck</div>
                 </div>
                 <div class="gallery-item" onclick="showLightbox('images/photo4.jpg', 'Aurora')">
                     <div class="image-container">
@@ -61,35 +92,11 @@
                     </div>
                     <div class="description">Aurora</div>
                 </div>
-                <div class="gallery-item" onclick="showLightbox('images/photo5.jpg', 'Half a horse')">
+                <div class="gallery-item" onclick="showLightbox('images/photo15.jpg', 'Concert')">
                     <div class="image-container">
-                        <img src="images/photo5.jpg" alt="Half a horse" loading="lazy">
+                        <img src="images/photo15.jpg" alt="Concert" loading="lazy">
                     </div>
-                    <div class="description">Half a horse</div>
-                </div>
-                <div class="gallery-item" onclick="showLightbox('images/photo6.jpg', 'Sunset in Englische Garten')">
-                    <div class="image-container">
-                        <img src="images/photo6.jpg" alt="Sunset in Englische Garten" loading="lazy">
-                    </div>
-                    <div class="description">Sunset in Englische Garten</div>
-                </div>
-                <div class="gallery-item" onclick="showLightbox('images/photo7.jpg', 'FC Bayern')">
-                    <div class="image-container">
-                        <img src="images/photo7.jpg" alt="FC Bayern" loading="lazy">
-                    </div>
-                    <div class="description">FC Bayern</div>
-                </div>
-                <div class="gallery-item" onclick="showLightbox('images/photo8.jpg', 'Horse & Cop')">
-                    <div class="image-container">
-                        <img src="images/photo8.jpg" alt="Horse & Cop" loading="lazy">
-                    </div>
-                    <div class="description">Horse & Cop</div>
-                </div>
-                <div class="gallery-item" onclick="showLightbox('images/photo9.jpg', 'Pink Cafe')">
-                    <div class="image-container">
-                        <img src="images/photo9.jpg" alt="Pink Cafe" loading="lazy">
-                    </div>
-                    <div class="description">Pink Cafe</div>
+                    <div class="description">Concert</div>
                 </div>
                 <div class="gallery-item" onclick="showLightbox('images/photo10.jpg', 'Notre Dame')">
                     <div class="image-container">
@@ -109,29 +116,23 @@
                     </div>
                     <div class="description">Tree seat</div>
                 </div>
-                <div class="gallery-item" onclick="showLightbox('images/photo13.jpg', 'Gaze')">
+                <div class="gallery-item" onclick="showLightbox('images/photo8.jpg', 'Castle wall')">
                     <div class="image-container">
-                        <img src="images/photo13.jpg" alt="Gaze" loading="lazy">
+                        <img src="images/photo8.jpg" alt="Castle wall" loading="lazy">
                     </div>
-                    <div class="description">Gaze</div>
+                    <div class="description">Castle wall</div>
                 </div>
-                <div class="gallery-item" onclick="showLightbox('images/photo14.jpg', 'Underground girl')">
+                <div class="gallery-item" onclick="showLightbox('images/photo2.jpg', 'Zebra crossing')">
                     <div class="image-container">
-                        <img src="images/photo14.jpg" alt="Underground girl" loading="lazy">
+                        <img src="images/photo2.jpg" alt="Zebra crossing" loading="lazy">
                     </div>
-                    <div class="description">Underground girl</div>
+                    <div class="description">Zebra crossing</div>
                 </div>
-                <div class="gallery-item" onclick="showLightbox('images/photo15.jpg', 'Hague')">
+                <div class="gallery-item" onclick="showLightbox('images/photo1.jpg', 'The dark church')">
                     <div class="image-container">
-                        <img src="images/photo15.jpg" alt="Hague" loading="lazy">
+                        <img src="images/photo1.jpg" alt="The dark church" loading="lazy">
                     </div>
-                    <div class="description">Hague</div>
-                </div>
-                <div class="gallery-item" onclick="showLightbox('images/photo16.jpg', 'Sparkle')">
-                    <div class="image-container">
-                        <img src="images/photo16.jpg" alt="Sparkle" loading="lazy">
-                    </div>
-                    <div class="description">Sparkle</div>
+                    <div class="description">The dark church</div>
                 </div>
             </div>
         </section>

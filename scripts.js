@@ -10,7 +10,6 @@ function toggleAccordion(container) {
 
 // 语言切换功能
 function switchLanguage(lang) {
-    localStorage.setItem('preferredLanguage', lang); // 保存用户选择的语言到本地存储
     document.querySelectorAll('[data-lang]').forEach(el => {
         el.style.display = el.getAttribute('data-lang') === lang ? '' : 'none';
     });
@@ -63,7 +62,7 @@ document.getElementById('lightbox').addEventListener('click', function(event) {
 // 默认语言切换调用
 document.addEventListener("DOMContentLoaded", function() {
     const urlParams = new URLSearchParams(window.location.search);
-    const savedLanguage = urlParams.get('lang') || localStorage.getItem('preferredLanguage') || 'en'; // 获取URL参数或本地存储中的语言设置，默认为英语
+    const savedLanguage = urlParams.get('lang') || 'en'; // 获取URL参数中的语言设置，默认为英语
     switchLanguage(savedLanguage);
 });
 
