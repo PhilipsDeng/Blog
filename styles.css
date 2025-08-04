@@ -70,40 +70,62 @@ nav a:hover {
 /* 设置项目部分样式 */
 .projects-section ul {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    list-style-type: none;
+    flex-direction: column; /* 竖向排列 */
+    align-items: center; /* 居中对齐 */
+    gap: 30px; /* 项目之间的间距 */
+    list-style: none; /* 移除默认列表样式 */
     padding: 0;
+    margin: 0;
+}
+/* 设置项目部分样式 */
+.project-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 700px; /* 设置卡片宽度 */
+    padding: 20px; /* 增加内边距 */
+    text-align: center;
+    border: 5px solid #000000e9; /* 添加边框 */
+    border-radius: 10px; /* 添加圆角 */
+    background-color: #ffffff; /* 设置深色背景 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 添加阴影 */
+    margin: 0 auto; /* 居中卡片 */
+    transition: transform 0.3s, box-shadow 0.3s;
 }
 
-.projects-section li {
-    flex: 1 1 calc(40% - 20px); /* Each item takes up 40% of the container width, minus 20px for spacing */
-    margin-bottom: 20px;
-    margin-right: 10px; /* Add right margin to space items apart */
-    margin-left: 10px; /* Add left margin to space items apart */
-    text-align: center; /* Center-align the text */
+.project-item:hover {
+    transform: translateY(-10px); /* 鼠标悬停时微微上移 */
+    box-shadow: 0 10px 20px rgba(73, 73, 73, 0.5); /* 增强阴影效果 */
 }
 
-.projects-section img {
-    width: 100%;
-    height: auto;
-    display: block;
-    margin: 0 auto;
+.project-item img {
+    max-width: 100%;
+    height: auto; /* 图片高度自适应 */
+    object-fit: contain; /* 保持图片比例 */
+    margin-bottom: 0px; /* 图片与标题之间的间距 */
+    margin-top: 10px;
 }
 
-.projects-section a.project-title {
-    color: #ffffffda;
-    font-size: 20px;
+.project-title {
+    font-size: 20px; /* 调整字体大小 */
+    font-weight: bold; /* 加粗标题 */
+    color: #000000c9; /* 设置标题字体为black色 */
     text-decoration: none;
-    display: block;
-    margin-bottom: 10px; /* Add some space between the link and the image */
+    margin-top: 5px; /* 标题与图片之间的间距 */
+}
+
+.project-title:hover {
+    color: #2777d2; /* 鼠标悬停时改变颜色 */
 }
 
 @media (max-width: 768px) {
-    .projects-section li {
-        flex: 1 1 100%; /* On small screens, each item takes up 100% of the container width */
-        margin-right: 0; /* Remove right margin on small screens */
-        margin-left: 0; /* Remove left margin on small screens */
+    .project-item {
+        width: 90%; /* 小屏幕下项目宽度自适应 */
+        padding: 15px; /* 调整内边距 */
+    }
+
+    .project-item img {
+        max-height: 300px; /* 调整图片高度以适应小屏幕 */
     }
 }
 
